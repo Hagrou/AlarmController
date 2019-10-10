@@ -33,6 +33,18 @@ function isSomethingAppening()
        currentEvent=currentEvent..(" DetecteurMouvementEntree ON")
        securityEvent=true
     end
+    if  (otherdevices['DetecteurCuisine'] == "On" and timeDiff(otherdevices_lastupdate['DetecteurCuisine'])>blindDelaySec) then
+       currentEvent=currentEvent..(" DetecteurCuisine ON")
+       securityEvent=true
+    end
+    if  (otherdevices['DetecteurMouvementSalonTV'] == "On" and timeDiff(otherdevices_lastupdate['DetecteurMouvementSalonTV'])>blindDelaySec) then
+       currentEvent=currentEvent..(" DetecteurSalonTV ON")
+       securityEvent=true
+    end
+    if  (otherdevices['DetecteurMouvementMusique'] == "On" and timeDiff(otherdevices_lastupdate['DetecteurMouvementMusique'])>blindDelaySec) then
+       currentEvent=currentEvent..(" DetecteurMusique ON")
+       securityEvent=true
+    end
     return securityEvent
 end
 

@@ -15,6 +15,7 @@ class Buzzer {
     void speakOn();                     // active sound
     void ledBlue();                     // switch led to blue
     void ledGreen();                    // switch led to green
+    std::string buzzerToHtml();         // return html config part
   protected:
     void tone(int freq, int duration);
     bool isOn;

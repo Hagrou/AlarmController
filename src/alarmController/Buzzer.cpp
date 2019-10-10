@@ -100,3 +100,21 @@ void Buzzer::play(char note, int duration) {
     }
   }
 }
+
+//===========================================================
+std::string Buzzer::buzzerToHtml() {
+  std::string page=
+  "  <h2>Buzzer</h2>\n"
+  "  <form action='/buzzer'>\n"
+  "      <input type='radio' id='buzzerOn'  name='set' value='on'";
+  page+=speaker()?" checked='true'>\n":">\n";
+  page+=
+  "      <label for='buzzerOn'>On</label>\n"
+  "      <input type='radio' id='buzzerOff' name='set' value='off'";
+  page+=!speaker()?" checked='true'>\n":">\n";
+  page+=
+  "      <label for='buzzerOff'>Off</label>\n"
+  "      <input type='submit' value='Apply'/>\n"
+  "  </form>\n";
+  return page;
+}
