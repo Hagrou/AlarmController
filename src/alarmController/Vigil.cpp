@@ -11,8 +11,6 @@
 #define SET_WARNING_URL DOMOTICZ_URL       "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=30"
 #define SET_ALARM_URL DOMOTICZ_URL         "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=50"
 
-Credential grantList[]={ ACCESS_LIST }; // TODO: deprecated
-
 //===========================================================  
 Vigil::Vigil(Buzzer  *_pBuzzer, int pinData0, int pinData1) {
   rfidBus.begin(pinData0, pinData0, pinData1, pinData1);

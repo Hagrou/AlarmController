@@ -20,4 +20,4 @@
 #define SECURITY_LEVEL_IDX   "#securityLevelIDX#"  // domoticz security level device idx
 #define ALARM_IDX            "#alarmIDX#"          // Alarm idx
 #define HTTP_SERVER_PORT     #controllerServerPort#
-#define ACCESS_LIST          #accessList#
+

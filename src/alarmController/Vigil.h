@@ -24,7 +24,6 @@ public:
   bool spiffsReadConfig();
 
   bool grantAccess(uint32_t key, std::string &tagName, std::string &msg); // register a new rfi tag 
-  bool grantList(std::string &msg);                                      // show all creds
   bool grantRevoke(uint32_t tagId, std::string &message);    // revoke a rfi tag
 
   

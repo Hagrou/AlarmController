@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="600b7bad-42e8-4022-9a38-522d7ad8b1c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/alarmController/.vscode/arduino.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alarmController/.vscode/c_cpp_properties.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alarmController/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/ipch/32e4f4a09d03dec5/mmap_address.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/ipch/5955f4d04310498f/mmap_address.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/ipch/800b9be110b53925/VIGIL.ipch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/ipch/800b9be110b53925/mmap_address.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/ipch/ff47d9a0525a11ff/mmap_address.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/Buzzer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/Buzzer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/Buzzer.h" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/Buzzer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/Vigil.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/Vigil.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/Vigil.h" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/Vigil.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/alarmController.ino" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/alarmController.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmController/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/alarmController/config.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config_test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config_test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domoticz/script_device_security2Warning.lua" beforeDir="false" afterPath="$PROJECT_DIR$/domoticz/script_device_security2Warning.lua" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/genConfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
+            <state relative-caret-position="2108">
               <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
             </state>
           </provider>
@@ -59,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/config_test.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -67,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/domoticz/script_device_security2Warning.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+            <state relative-caret-position="624">
+              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -104,7 +88,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="232" />
     <option name="y" value="85" />
     <option name="width" value="1626" />
@@ -116,7 +100,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,6 +116,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -207,15 +191,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-355" y="105" width="1626" height="939" extended-state="0" />
+    <frame x="232" y="85" width="1626" height="939" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21328224" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21583652" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31761786" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31761786" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34285715" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -304,7 +288,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/genConfig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
+        <state relative-caret-position="2108">
           <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
         </state>
       </provider>
@@ -319,14 +303,14 @@
     <entry file="file://$PROJECT_DIR$/config_test.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/domoticz/script_device_security2Warning.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+        <state relative-caret-position="624">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
         </state>
       </provider>
     </entry>
