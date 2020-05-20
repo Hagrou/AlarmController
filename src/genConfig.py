@@ -125,7 +125,7 @@ def main(argv):
           configFile = arg
 
     if configFile=='' or buildDir=='':
-        print(usage)
+        usage(2)
         sys.exit()
     try:
         print("srcDir=[%s]  configFile=[%s] buildDir=[%s]" % (srcDir, configFile, buildDir))
