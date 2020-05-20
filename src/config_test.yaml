@@ -1,9 +1,19 @@
 {
     #AlarmController Sensor
+        # Wifi configuration
         'wifiSSID'        : 'myWifiName',
         'wifiPassword'    : 'MyWifiPassword',
+
+        # Other The Air update Configuration
+        'otaHost'         : 'esp8266-alarmController',
+        'otaPassword'     : 'MyOTAPassword',
+        'otaPort'         : '8266',
+	
+        # Web Controller	
         'adminName'       : 'admin',
         'adminPwd'        : 'MyHttpPassword',
+
+        # Domoticz setting
         'domoticzURL'     : 'http://192.168.0.128:8080',
         'controllerServerPort': '80',
         'securityLevelIDX': '6',
