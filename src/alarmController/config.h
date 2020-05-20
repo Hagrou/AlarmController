@@ -16,6 +16,10 @@
 #define WIFI_SSID            "#wifiSSID#"          // wifi SSID
 #define WIFI_PASSWORD        "#wifiPassword#"      // wifi password
 
+#define OTA_HOST             "#otaHost#"           // wifi upgrde configuraiton
+#define OTA_PASSWORD         "#otaPassword#"
+#define OTA_PORT             #otaPort#
+
 #define DOMOTICZ_URL         "#domoticzURL#"       // domoticz url
 #define SECURITY_LEVEL_IDX   "#securityLevelIDX#"  // domoticz security level device idx
 #define ALARM_IDX            "#alarmIDX#"          // Alarm idx

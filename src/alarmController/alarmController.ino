@@ -3,6 +3,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <ArduinoOTA.h>
 
 #include "Wiegand.h"
 #include "config.h"
@@ -12,6 +13,50 @@
 Buzzer            *pBuzzer=nullptr;
 Vigil             *pVigil=nullptr;
 ESP8266WebServer   server(HTTP_SERVER_PORT); 
+
+//==========================================================
+void OTASetup() {
+  ArduinoOTA.setPort(OTA_PORT); 
+  ArduinoOTA.setHostname(OTA_HOST);   
+  ArduinoOTA.setPassword(OTA_PASSWORD);
+
+  
+  ArduinoOTA.onStart([]() {
+    Serial.println("/!\\ Upload new firmware");
+  });
+  
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  
+  ArduinoOTA.onEnd([]() {
+    Serial.println("\n/!\\ firmware uploaded ");
+  });
+
+  ArduinoOTA.onError([](ota_error_t error) {
+    Serial.printf("Error [%u]: ", error);
+    switch(error) {
+      case OTA_AUTH_ERROR:  // Bad password
+        Serial.println("OTA_AUTH_ERROR");
+        break;
+      // erreur lors du démarrage de la MaJ (flash insuffisante)
+      case OTA_BEGIN_ERROR: 
+        Serial.println("OTA_BEGIN_ERROR: too small flash memory");
+        break;
+      case OTA_CONNECT_ERROR:
+        Serial.println("OTA_CONNECT_ERROR");
+        break;
+      case OTA_RECEIVE_ERROR:
+        Serial.println("OTA_RECEIVE_ERROR");
+        break;
+      case OTA_END_ERROR:
+      	Serial.println("OTA_END_ERROR");
+        break;
+      default: Serial.println("Erreur inconnue");
+    }
+  });
+  ArduinoOTA.begin(); // Enable OTA
+}
 
 //===========================================================
 void handleBuzzer() {
@@ -91,7 +136,8 @@ void handleGrantAccess() {
     server.send(500, "text/plain", message.c_str());
   }
 }
-  
+
+//===========================================================
 void handleNotFound(){
   String message = "File Not Found\n\n";
   message += "URI: ";
@@ -107,7 +153,7 @@ void handleNotFound(){
   server.send(404, "text/plain", message);
 }
 
- //===========================================================
+//===========================================================
 std::string mainHtmlPage() {
   char        buffer[256];
   uint32_t    free=0;
@@ -118,7 +164,7 @@ std::string mainHtmlPage() {
   "<html>\n"
   "  <meta http-equiv='refresh' content='10'/>"
   "  <body>\n"
-  "    <h1>Alarm Controller</h1>\n"
+  "    <h1>Alarm Controller v2.0</h1>\n"
   "    <h3>Status</h3>\n";
 
   memset(buffer,0,sizeof(buffer));
@@ -134,6 +180,7 @@ std::string mainHtmlPage() {
   "</html>";
    return main;
 }
+
 //==========================================================
 void setup() {
   Serial.begin(COM_SPEED);
@@ -143,8 +190,8 @@ void setup() {
   
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.println("\tWaiting for WIFI connection...");
-  // Wait for connection
 
+  // Wait for connection
   pBuzzer->ledBlue();
   while (WiFi.status() != WL_CONNECTED) {
     pBuzzer->ledBlue();
@@ -157,6 +204,8 @@ void setup() {
   Serial.printf("\n\tConnected to '%s' with @ip ", WIFI_SSID);
   Serial.println(WiFi.localIP());
 
+  OTASetup(); // setting OTA
+  
   pVigil=new Vigil(pBuzzer, PIN_DATA0,PIN_DATA1);
 
   if (!pVigil->getSecurityDeviceStatus()) {
@@ -183,4 +232,5 @@ void loop() {
   pVigil->loop();
 
   delay(500);
+  ArduinoOTA.handle(); // OTA manager
 }
