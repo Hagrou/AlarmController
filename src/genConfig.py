@@ -55,20 +55,21 @@ def applyConfig(srcName, dstName, conf):
     dstFile.close()
     srcFile.close()
 
-def patchTree(src, dst, workList, conf):
+def patchTree(src, dst, workList, ignoreList, conf):
     names = os.listdir(src)
 
-    os.makedirs(dst)
+    os.makedirs(dst,exist_ok=True)
     errors = []
     for name in names:
         srcName = src+'/'+name
         dstName = dst+'/'+name
         try:
-            if srcName in workList['ignore']:
+            if srcName in ignoreList:
+                print("Ignore %s" % srcName)
                 continue
             elif os.path.isdir(srcName):
-                patchTree(srcName, dstName,workList,conf)
-            elif srcName in workList['configure']:
+                patchTree(srcName, dstName,workList,ignoreList, conf)
+            elif srcName in workList:
                 print("Patch File %s" % dstName)
                 applyConfig(srcName, dstName, conf)
             else:
@@ -82,7 +83,6 @@ def patchTree(src, dst, workList, conf):
         except Exception as err:
             errors.extend(err.args[0])
 
-
 def build_tree(srcDir, configFile, buildDir):
     if not os.path.exists(srcDir):
         raise Exception("Error, src_dir (%s) not found" % srcDir)
@@ -94,15 +94,11 @@ def build_tree(srcDir, configFile, buildDir):
     with open(configFile, 'r') as yamlFile:
         config = yaml.safe_load(yamlFile)
 
-    fileList = {'ignore': [srcDir+'/.idea', srcDir+'/venv'],
-                'configure': [
-                    srcDir+'/alarmController/config.h',
-                    srcDir+'/domoticz/script_device_security2Warning.lua',
-                    srcDir+'/domoticz/script_time_securityStatus.lua'
-                    ]
-                }
-    patchTree(srcDir + "/alarmController", buildDir+"/alarmController",fileList,config)
-    patchTree(srcDir + "/domoticz", buildDir+"/domoticz", fileList, config)
+    for directory in config['genConfig']['dir']:
+        targetDir=next(iter(directory))
+        patchTree(srcDir + targetDir, buildDir + targetDir,
+                  directory[targetDir],config['genConfig']['ignore'],
+                  config['config'])
 
 def main(argv):
     srcDir='.'

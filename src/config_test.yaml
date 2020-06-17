@@ -1,29 +1,40 @@
 {
-    #AlarmController Sensor
-        # Wifi configuration
-        'wifiSSID'        : 'myWifiName',
-        'wifiPassword'    : 'MyWifiPassword',
+    # directory and file setting to apply genConfig
+    'genConfig': {
+         'dir': [ '/domoticz':        [ './domoticz/script_device_security2Warning.lua',
+                                        './domoticz/script_time_securityStatus.lua' ],
+                  '/alarmController': [ './alarmController/config.h']
+         ],
+         'ignore' : [ './domoticz/.idea','/venv'],
+    },
 
-        # Other The Air update Configuration
-        'otaHost'         : 'esp8266-alarmController',
-        'otaPassword'     : 'MyOTAPassword',
-        'otaPort'         : '8266',
-	
-        # Web Controller	
-        'adminName'       : 'admin',
-        'adminPwd'        : 'MyHttpPassword',
+    # values
+    'config': { #AlarmController Sensor
+      # Wifi configuration
+        'wifiSSID': 'myWifiName',
+        'wifiPassword': 'MyWifiPassword',
 
-        # Domoticz setting
-        'domoticzURL'     : 'http://192.168.0.128:8080',
+      # Other The Air update Configuration
+        'otaHost': 'esp8266-alarmController',
+        'otaPassword': 'MyOTAPassword',
+        'otaPort': '8266',
+
+      # Web Controller
+        'adminName': 'admin',
+        'adminPwd': 'MyHttpPassword',
+
+      # Domoticz setting
+        'domoticzURL': 'http://192.168.0.128:8080',
         'controllerServerPort': '80',
         'securityLevelIDX': '6',
-        'alarmIDX'        : '5',
-        
-    #Domoticz Scripts
-        'securityCtrlUrl' : 'http://192.168.0.130',
-        'armedDelaySec'   : '30',  # delay for transition Arming->Armed
-        'faultDelaySec'   : '30',  # delay to return Warn1->Armed
-        'alarmDelaySec'   : '10',  # delay for transition Warn2->Alarm
-        'rearmDelaySec'   : '300', # delay after Alarm->Armed
-        'blindDelaySec'   : '10',  # delay of not taking into account the activation of the same device
+        'alarmIDX': '5',
+
+      #Domoticz Scripts
+        'securityCtrlUrl': 'http://192.168.0.130',
+        'armedDelaySec': '30',  # delay for transition Arming->Armed
+        'faultDelaySec': '30',  # delay to return Warn1->Armed
+        'alarmDelaySec': '10',  # delay for transition Warn2->Alarm
+        'rearmDelaySec': '300', # delay after Alarm->Armed
+        'blindDelaySec': '10',  # delay of not taking into account the activation of the same device
+    }
 }
