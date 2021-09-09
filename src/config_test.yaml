@@ -22,13 +22,13 @@
       # Web Controller
         'adminName': 'admin',
         'adminPwd': 'MyHttpPassword',
-
-      # Domoticz setting
-        'domoticzURL': 'http://192.168.0.128:8080',
+	
+      # Jeedom setting
+        'jeedomURL' :  'http://192.168.1.54',
+        'jeedomApiKey': 'KDLAZ?EKqsdk4JzheAQNsdkajhzeSQLD',
         'controllerServerPort': '80',
-        'securityLevelIDX': '6',
-        'alarmIDX': '5',
-
+        'jeedomCmdId': '243',
+	
       #Domoticz Scripts
         'securityCtrlUrl': 'http://192.168.0.130',
         'armedDelaySec': '30',  # delay for transition Arming->Armed

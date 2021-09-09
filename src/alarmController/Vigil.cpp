@@ -1,15 +1,8 @@
 
 #include "Vigil.h"
 
-
-#define SWITCH_OFF_ALARM_URL DOMOTICZ_URL  "/json.htm?type=command&param=switchlight&idx=" ALARM_IDX "&switchcmd=Off"
-#define GET_STATUS_URL DOMOTICZ_URL        "/json.htm?type=devices&rid=" SECURITY_LEVEL_IDX
-
-#define SET_DISARMED_URL DOMOTICZ_URL      "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=0"
-#define SET_ARMING_URL DOMOTICZ_URL        "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=10"
-#define SET_ARMED_URL DOMOTICZ_URL         "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=20"
-#define SET_WARNING_URL DOMOTICZ_URL       "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=30"
-#define SET_ALARM_URL DOMOTICZ_URL         "/json.htm?type=command&param=switchlight&switchcmd=Set%20Level&idx=" SECURITY_LEVEL_IDX "&level=50"
+#define SET_SWITCH_ALARM JEEDOM_URL "/core/api/jeeApi.php?apikey=" JEEDOM_API_KEY "&type=cmd&id=" JEEDOM_CMD_ID
+#define GET_STATUS_URL JEEDOM_URL "/core/api/jeeApi.php?apikey=" JEEDOM_API_KEY "&type=variable&name=vSecurityStatus"
 
 //===========================================================  
 Vigil::Vigil(Buzzer  *_pBuzzer, int pinData0, int pinData1) {
@@ -180,7 +173,6 @@ void Vigil::checkAccess() {
       case Disarmed:
         newState=Arming;
         pBuzzer->play('c', 100);pBuzzer->play('d', 100);pBuzzer->play('e', 100);
-        switchOffAlarm();
         break;
       case Arming: 
       case Warn1:
@@ -191,7 +183,7 @@ void Vigil::checkAccess() {
         pBuzzer->play('c', 100);pBuzzer->play('f', 100);pBuzzer->play('g', 100);
         break;
       }
-      setSecurityDeviceStatus(newState);
+      switchSecurityDeviceStatus();
     }
     else {
          Serial.println("ACCESS DENIED");
@@ -212,13 +204,17 @@ bool Vigil::getSecurityDeviceStatus() {
     // HTTP header has been send and Server response header has been handled
     Serial.printf("get %s: %d\n", GET_STATUS_URL,httpCode);
     if (HTTP_CODE_OK==httpCode) {
-      String data=httpClient.getString();
-      std::size_t pos = data.indexOf("\"Level\" :");
-      String sState= data.substring(pos+10,pos+12);     // get from "live" to the end
-    
-      Serial.printf("Level=[%s] (%d)\n", sState.c_str(), sState.toInt()); // TODO: del
-      state=(State) sState.toInt();
+      String sState=httpClient.getString();
+
       
+      if (sState=="Disarmed") state=Disarmed;
+      if (sState=="Arming")   state=Arming;
+      if (sState=="Armed")    state=Armed;
+      if (sState=="Warn1")    state=Warn1;
+      if (sState=="Warn2")    state=Warn2;
+      if (sState=="Alarm")    state=Alarm;
+      
+      Serial.printf("Level=[%s] (%d)\n", sState.c_str(), state); // TODO: del
     } else {
       Serial.printf("[HTTP] GET... failed, error: %s\n", httpClient.errorToString(httpCode).c_str());
       isValid=false;
@@ -301,23 +297,18 @@ void Vigil::loop() {
 }
 
 //===========================================================
-bool Vigil::setSecurityDeviceStatus(State newState) {
+bool Vigil::switchSecurityDeviceStatus() {
   bool        isValid=true;
   HTTPClient  httpClient;
   
-  switch(newState) {
-  case Disarmed: httpClient.begin(SET_DISARMED_URL); break;
-  case Arming:   httpClient.begin(SET_ARMING_URL); break;
-  case Armed:    httpClient.begin(SET_ARMED_URL); break;
-  case Warn1:    httpClient.begin(SET_WARNING_URL); break;
-  case Warn2:    break; // nothing to do
-  case Alarm:    httpClient.begin(SET_ALARM_URL); break;
-  }
+  Serial.printf("setCmd %s\n", (char *) SET_SWITCH_ALARM);
+  httpClient.begin(SET_SWITCH_ALARM);
+  
   int httpCode = httpClient.GET();  // start connection and send HTTP header
   if(httpCode > 0) {
     // HTTP header has been send and Server response header has been handled
     if (HTTP_CODE_OK==httpCode) {
-      Serial.print(httpClient.getString());
+      Serial.printf("set %s: %d\n", SET_SWITCH_ALARM,httpCode);
     } else {
       Serial.printf("[HTTP] GET... failed, error: %s\n", httpClient.errorToString(httpCode).c_str());
       isValid=false;
@@ -325,26 +316,6 @@ bool Vigil::setSecurityDeviceStatus(State newState) {
   }
   httpClient.end(); // close request
 
-  return isValid;
-}
-
-//===========================================================
-bool Vigil::switchOffAlarm() {
-  bool        isValid=true;
-  HTTPClient  httpClient;
-  
-  httpClient.begin(SWITCH_OFF_ALARM_URL);
-  int httpCode = httpClient.GET();  // start connection and send HTTP header
-  if(httpCode > 0) {
-    // HTTP header has been send and Server response header has been handled
-    if (HTTP_CODE_OK==httpCode) {
-      Serial.print(httpClient.getString());
-    } else {
-      Serial.printf("[HTTP] GET... failed, error: %s\n", httpClient.errorToString(httpCode).c_str());
-      isValid=false;
-    }
-  }
-  httpClient.end(); // close request
   return isValid;
 }
 

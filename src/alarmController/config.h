@@ -20,8 +20,11 @@
 #define OTA_PASSWORD         "#otaPassword#"
 #define OTA_PORT             #otaPort#
 
-#define DOMOTICZ_URL         "#domoticzURL#"       // domoticz url
-#define SECURITY_LEVEL_IDX   "#securityLevelIDX#"  // domoticz security level device idx
-#define ALARM_IDX            "#alarmIDX#"          // Alarm idx
-#define HTTP_SERVER_PORT     #controllerServerPort#
+#define JEEDOM_URL           "#jeedomURL#"          // jeedom  url
+#define JEEDOM_API_KEY       "#jeedomApiKey#"       // jeedom api key
+#define JEEDOM_CMD_ID        "#jeedomCmdId#"        // jeedom cmd id
+
+#define SECURITY_LEVEL_IDX   "#securityLevelIDX#"   // domoticz security level device idx
+
+#define HTTP_SERVER_PORT     #adminPort#
 

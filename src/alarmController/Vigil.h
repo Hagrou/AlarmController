@@ -29,8 +29,7 @@ public:
   
   void checkAccess();
   bool getSecurityDeviceStatus();             // get from domoticz security state
-  bool setSecurityDeviceStatus(State newState);
-  bool switchOffAlarm();
+  bool switchSecurityDeviceStatus();
   State getState();
   std::string grantToHtml();
   void loop();

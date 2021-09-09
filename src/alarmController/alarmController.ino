@@ -13,6 +13,7 @@
 Buzzer            *pBuzzer=nullptr;
 Vigil             *pVigil=nullptr;
 ESP8266WebServer   server(HTTP_SERVER_PORT); 
+// RemoteDebug        Debug;
 
 //==========================================================
 void OTASetup() {
@@ -164,7 +165,7 @@ std::string mainHtmlPage() {
   "<html>\n"
   "  <meta http-equiv='refresh' content='10'/>"
   "  <body>\n"
-  "    <h1>Alarm Controller v2.0</h1>\n"
+  "    <h1>Alarm Controller v3.0</h1>\n"
   "    <h3>Status</h3>\n";
 
   memset(buffer,0,sizeof(buffer));
